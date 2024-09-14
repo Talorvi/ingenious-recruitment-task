@@ -1,6 +1,7 @@
 # Recruitment Task 🧑‍💻👩‍💻
 
 ### Invoice module with approve and reject system as a part of a bigger enterprise system. Approval module exists and you should use it. It is Backend task, no Frontend is needed.
+
 ---
 Please create your own repository and make it public or invite us to check it.
 
@@ -33,10 +34,6 @@ Please create your own repository and make it public or invite us to check it.
     - Total
   - Total price
 </td>
-<td>
-Image just for visualization
-<img src="https://templates.invoicehome.com/invoice-template-us-classic-white-750px.png" style="width: auto"; height:100%" />
-</td>
 </tr>
 </table>
 
@@ -49,7 +46,7 @@ Simple Invoice module which is approving or rejecting single invoice using infor
 ```
 * In this task you must save only invoices so don’t write repositories for every model/ entity.
 
-* You should be able to approve or reject each invoice just once (if invoice is approved you cannot reject it and vice versa.
+* You should be able to approve or reject each invoice just once (if invoice is approved you cannot reject it and vice versa).
 
 * You can assume that product quantity is integer and only currency is USD.
 
@@ -70,3 +67,20 @@ Unit tests in plus.
   ```
   docker compose exec workspace bash
   ``` 
+
+### First run:
+* run:
+```bash
+php artisan db:seed --class=App\\Modules\\Invoices\\Infrastructure\\Database\\Seeders\\DatabaseSeeder
+```
+
+### Endpoints:
+* `/api/invoices/{invoiceId}` - show given invoice
+* `/api/invoices/{invoiceId}/approve` - approve given invoice
+* `/api/invoices/{invoiceId}/reject` - reject given invoice
+
+
+### Run tests:
+```bash
+php artisan test
+``` 

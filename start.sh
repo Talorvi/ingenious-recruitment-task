@@ -1,5 +1,5 @@
 #! /bin/bash
-cd ./docker/
+cd docker/
 
 docker compose up --build --remove-orphans -d
 docker compose run workspace composer install
