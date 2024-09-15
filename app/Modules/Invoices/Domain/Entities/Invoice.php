@@ -15,6 +15,7 @@ class Invoice
     private \DateTimeInterface $date;
     private \DateTimeInterface $dueDate;
     private Company $company;
+    private Company $billedCompany;
     private array $lineItems;
     private StatusEnum $status;
 
@@ -24,6 +25,7 @@ class Invoice
         \DateTimeInterface $date,
         \DateTimeInterface $dueDate,
         Company $company,
+        Company $billedCompany,
         array $lineItems,
         StatusEnum $status
     ) {
@@ -32,6 +34,7 @@ class Invoice
         $this->date = $date;
         $this->dueDate = $dueDate;
         $this->company = $company;
+        $this->billedCompany = $billedCompany;
         $this->lineItems = $lineItems;
         $this->status = $status;
     }
@@ -54,6 +57,10 @@ class Invoice
 
     public function getCompany(): Company {
         return $this->company;
+    }
+
+    public function getBilledCompany(): Company {
+        return $this->billedCompany;
     }
 
     public function getLineItems(): array {

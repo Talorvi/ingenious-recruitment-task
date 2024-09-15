@@ -42,6 +42,17 @@ class InvoiceToInvoiceDtoMapperTest extends TestCase
             'test@example.com'
         );
 
+        $billedCompany = new Company(
+            Uuid::uuid4(),
+            'Billed Company',
+            '456 Billed St',
+            'Billing City',
+            '67890',
+            '555-5678',
+            'billing@example.com'
+        );
+
+
         $product1 = new Product(Uuid::uuid4(), 'Product 1', 100.0, 'USD');
         $product2 = new Product(Uuid::uuid4(), 'Product 2', 200.0, 'USD');
 
@@ -54,6 +65,7 @@ class InvoiceToInvoiceDtoMapperTest extends TestCase
             new \DateTimeImmutable(),
             new \DateTimeImmutable('+30 days'),
             $company,
+            $billedCompany,
             [$lineItem1, $lineItem2],
             StatusEnum::DRAFT
         );

@@ -19,6 +19,7 @@ class EloquentInvoiceToInvoiceMapper
     public static function map(Model $eloquentInvoice): Invoice
     {
         $company = self::mapCompany($eloquentInvoice->company);
+        $billedCompany = self::mapCompany($eloquentInvoice->billedCompany);
         $lineItems = self::mapLineItems($eloquentInvoice->lineItems);
 
         return new Invoice(
@@ -27,6 +28,7 @@ class EloquentInvoiceToInvoiceMapper
             date: $eloquentInvoice->date,
             dueDate: $eloquentInvoice->due_date,
             company: $company,
+            billedCompany: $billedCompany,
             lineItems: $lineItems,
             status: StatusEnum::tryFrom($eloquentInvoice->status),
         );

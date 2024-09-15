@@ -19,6 +19,7 @@ class InvoiceTest extends TestCase
         $issueDate = new \DateTimeImmutable();
         $dueDate = new \DateTimeImmutable('+30 days');
         $company = $this->createMockCompany();
+        $billedCompany = $this->createMockCompany();
         $items = [
             ['name' => 'Product 1', 'quantity' => 1, 'price' => 100.00],
             ['name' => 'Product 2', 'quantity' => 2, 'price' => 200.00],
@@ -31,6 +32,7 @@ class InvoiceTest extends TestCase
             $issueDate,
             $dueDate,
             $company,
+            $billedCompany,
             $items,
             $status
         );
@@ -65,6 +67,7 @@ class InvoiceTest extends TestCase
             'INV-123',
             new \DateTimeImmutable(),
             new \DateTimeImmutable('+30 days'),
+            $this->createMockCompany(),
             $this->createMockCompany(),
             [],
             $status

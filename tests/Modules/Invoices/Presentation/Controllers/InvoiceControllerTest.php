@@ -46,12 +46,24 @@ class InvoiceControllerTest extends TestCase
             'created_at' => now(),
             'updated_at' => now(),
         ]);
+        $billedCompany = EloquentCompany::create([
+            'id' => Uuid::uuid4()->toString(),
+            'name' => $faker->company(),
+            'street' => $faker->streetAddress(),
+            'city' => $faker->city(),
+            'zip' => $faker->postcode(),
+            'phone' => $faker->phoneNumber(),
+            'email' => $faker->safeEmail(),
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
         return EloquentInvoice::create([
             'id' => Uuid::uuid4()->toString(),
             'number' => $faker->uuid(),
             'date' => $faker->date(),
             'due_date' => $faker->date(),
             'company_id' => $company->id,
+            'billed_company_id' => $billedCompany->id,
             'status' => StatusEnum::cases()[array_rand(StatusEnum::cases())],
             'created_at' => now(),
             'updated_at' => now(),

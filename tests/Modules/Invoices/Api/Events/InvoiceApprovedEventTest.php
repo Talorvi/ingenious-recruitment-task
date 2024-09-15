@@ -28,6 +28,7 @@ class InvoiceApprovedEventTest extends TestCase
             new \DateTimeImmutable(),
             new \DateTimeImmutable('+30 days'),
             $this->createMockCompanyDto(),
+            $this->createMockBilledCompany(),
             StatusEnum::APPROVED,
             [],
             0.0,
@@ -46,6 +47,19 @@ class InvoiceApprovedEventTest extends TestCase
             '12345',
             '555-1234',
             'test@example.com'
+        );
+    }
+
+    private function createMockBilledCompany(): CompanyDto
+    {
+        return new CompanyDto(
+            Uuid::uuid4(),
+            'Billed Company',
+            '456 Billed St',
+            'Billing City',
+            '67890',
+            '555-5678',
+            'billing@example.com'
         );
     }
 }

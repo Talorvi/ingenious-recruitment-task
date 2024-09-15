@@ -57,6 +57,7 @@ class InvoiceServiceTest extends TestCase
             new \DateTimeImmutable(),
             new \DateTimeImmutable('+30 days'),
             $this->createMockCompany(),
+            $this->createMockCompany(),
             [],
             StatusEnum::DRAFT
         );

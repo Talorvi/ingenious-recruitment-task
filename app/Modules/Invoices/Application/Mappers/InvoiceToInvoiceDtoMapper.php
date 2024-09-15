@@ -17,6 +17,7 @@ class InvoiceToInvoiceDtoMapper
     public static function map(Invoice $invoice): InvoiceDto
     {
         $companyDto = CompanyToCompanyDtoMapper::map($invoice->getCompany());
+        $billedCompanyDto = CompanyToCompanyDtoMapper::map($invoice->getBilledCompany());
         $itemsDto = array_map([InvoiceLineItemToInvoiceLineItemDtoMapper::class, 'map'], $invoice->getLineItems());
 
         $totalAmount = 0;
@@ -37,6 +38,7 @@ class InvoiceToInvoiceDtoMapper
             date: $invoice->getDate(),
             dueDate: $invoice->getDueDate(),
             company: $companyDto,
+            billedCompany: $billedCompanyDto,
             status: $invoice->getStatus(),
             items: $itemsDto,
             totalAmount: $totalAmount,
