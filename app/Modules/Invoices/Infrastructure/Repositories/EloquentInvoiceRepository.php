@@ -7,6 +7,7 @@ namespace App\Modules\Invoices\Infrastructure\Repositories;
 use App\Modules\Invoices\Application\Mappers\EloquentInvoiceToInvoiceMapper;
 use App\Modules\Invoices\Application\Mappers\InvoiceToEloquentInvoiceMapper;
 use App\Modules\Invoices\Domain\Entities\Invoice;
+use App\Modules\Invoices\Domain\Repositories\InvoiceRepositoryInterface;
 use App\Modules\Invoices\Infrastructure\Models\EloquentInvoice;
 use Ramsey\Uuid\UuidInterface;
 

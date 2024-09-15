@@ -11,7 +11,7 @@ use App\Modules\Invoices\Application\Commands\RejectInvoiceCommand;
 use App\Modules\Invoices\Domain\Entities\Invoice;
 use App\Modules\Invoices\Domain\Exceptions\InvalidInvoiceStatusException;
 use App\Modules\Invoices\Domain\Exceptions\InvoiceNotFoundException;
-use App\Modules\Invoices\Infrastructure\Repositories\InvoiceRepositoryInterface;
+use App\Modules\Invoices\Domain\Repositories\InvoiceRepositoryInterface;
 use Ramsey\Uuid\UuidInterface;
 
 class InvoiceService

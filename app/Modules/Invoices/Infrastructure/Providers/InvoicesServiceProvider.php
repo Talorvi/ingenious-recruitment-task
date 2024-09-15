@@ -6,8 +6,8 @@ namespace App\Modules\Invoices\Infrastructure\Providers;
 
 use App\Modules\Invoices\Application\Facades\InvoiceFacade;
 use App\Modules\Invoices\Application\Facades\InvoiceFacadeInterface;
+use App\Modules\Invoices\Domain\Repositories\InvoiceRepositoryInterface;
 use App\Modules\Invoices\Infrastructure\Repositories\EloquentInvoiceRepository;
-use App\Modules\Invoices\Infrastructure\Repositories\InvoiceRepositoryInterface;
 use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Support\ServiceProvider;
 

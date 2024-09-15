@@ -12,7 +12,7 @@ use App\Modules\Invoices\Api\Events\InvoiceRejected;
 use App\Modules\Invoices\Application\Mappers\InvoiceToApprovalDtoMapper;
 use App\Modules\Invoices\Application\Mappers\InvoiceToInvoiceDtoMapper;
 use App\Modules\Invoices\Domain\Exceptions\InvalidInvoiceStatusException;
-use App\Modules\Invoices\Infrastructure\Repositories\InvoiceRepositoryInterface;
+use App\Modules\Invoices\Domain\Repositories\InvoiceRepositoryInterface;
 use Illuminate\Contracts\Events\Dispatcher;
 use LogicException;
 use Ramsey\Uuid\UuidInterface;

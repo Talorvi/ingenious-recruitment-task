@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Modules\Invoices\Infrastructure\Repositories;
+namespace App\Modules\Invoices\Domain\Repositories;
 
 use App\Modules\Invoices\Domain\Entities\Invoice;
 use Ramsey\Uuid\UuidInterface;
