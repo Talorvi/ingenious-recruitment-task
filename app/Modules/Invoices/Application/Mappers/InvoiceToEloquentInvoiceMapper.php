@@ -16,6 +16,7 @@ class InvoiceToEloquentInvoiceMapper
         $eloquentInvoice->date = $invoice->getDate();
         $eloquentInvoice->due_date = $invoice->getDueDate();
         $eloquentInvoice->status = $invoice->getStatus()->value;
+        $eloquentInvoice->company_id = $invoice->getCompany()->getId()->toString();
 
         return $eloquentInvoice;
     }
