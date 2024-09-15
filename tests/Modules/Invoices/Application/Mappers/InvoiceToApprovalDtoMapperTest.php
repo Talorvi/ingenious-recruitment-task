@@ -30,6 +30,7 @@ class InvoiceToApprovalDtoMapperTest extends TestCase
             new \DateTimeImmutable(),
             new \DateTimeImmutable('+30 days'),
             $this->createMockCompany(),
+            $this->createMockBilledCompany(),
             [],
             StatusEnum::DRAFT
         );
@@ -45,6 +46,19 @@ class InvoiceToApprovalDtoMapperTest extends TestCase
             '12345',
             '555-1234',
             'test@example.com'
+        );
+    }
+
+    private function createMockBilledCompany(): Company
+    {
+        return new Company(
+            Uuid::uuid4(),
+            'Billed Company',
+            '456 Billed St',
+            'Billing City',
+            '67890',
+            '555-5678',
+            'billing@example.com'
         );
     }
 }

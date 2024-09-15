@@ -14,6 +14,7 @@ class InvoiceDto
     public \DateTimeInterface $date;
     public \DateTimeInterface $dueDate;
     public CompanyDto $company;
+    public CompanyDto $billedCompany;
     public StatusEnum $status;
     public array $items;
     public float $totalAmount;
@@ -26,6 +27,7 @@ class InvoiceDto
         \DateTimeInterface $date,
         \DateTimeInterface $dueDate,
         CompanyDto $company,
+        CompanyDto $billedCompany,
         StatusEnum $status,
         array $items,
         float $totalAmount,
@@ -38,6 +40,7 @@ class InvoiceDto
         $this->items = $items;
         $this->status = $status;
         $this->company = $company;
+        $this->billedCompany = $billedCompany;
         $this->dueDate = $dueDate;
         $this->date = $date;
         $this->number = $number;

@@ -15,7 +15,7 @@ class EloquentInvoiceRepository implements InvoiceRepositoryInterface
 {
     public function find(UuidInterface $id): ?Invoice
     {
-        $eloquentInvoice = EloquentInvoice::with(['company', 'lineItems', 'lineItems.product'])
+        $eloquentInvoice = EloquentInvoice::with(['company', 'billedCompany', 'lineItems', 'lineItems.product'])
             ->find($id->toString());
 
         if ($eloquentInvoice === null) {

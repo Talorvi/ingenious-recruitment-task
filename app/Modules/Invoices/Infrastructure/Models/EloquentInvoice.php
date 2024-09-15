@@ -18,6 +18,7 @@ class EloquentInvoice extends Model
         'date',
         'due_date',
         'company_id',
+        'billed_company_id',
         'status',
     ];
 
@@ -32,6 +33,11 @@ class EloquentInvoice extends Model
     public function company(): BelongsTo
     {
         return $this->belongsTo(EloquentCompany::class, 'company_id', 'id');
+    }
+
+    public function billedCompany(): BelongsTo
+    {
+        return $this->belongsTo(EloquentCompany::class, 'billed_company_id', 'id');
     }
 
     public function lineItems(): HasMany

@@ -53,6 +53,7 @@ class EloquentInvoiceRepositoryTest extends TestCase
             'id' => $invoice->getId()->toString(),
             'number' => $invoice->getNumber(),
             'company_id' => $invoice->getCompany()->getId(),
+            'billed_company_id' => $invoice->getBilledCompany()->getId(),
         ]);
     }
 
@@ -83,24 +84,15 @@ class EloquentInvoiceRepositoryTest extends TestCase
 
     private function createInvoiceInDatabase(): Invoice
     {
-        $faker = Factory::create();
-        $company = EloquentCompany::create([
-            'id' => Uuid::uuid4()->toString(),
-            'name' => $faker->company(),
-            'street' => $faker->streetAddress(),
-            'city' => $faker->city(),
-            'zip' => $faker->postcode(),
-            'phone' => $faker->phoneNumber(),
-            'email' => $faker->safeEmail(),
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
+        $company = $this->createMockEloquentCompany();
+        $billedCompany = $this->createMockEloquentCompany();
         $eloquentInvoice = EloquentInvoice::create([
             'id' => Uuid::uuid4()->toString(),
             'number' => Uuid::uuid4()->toString(),
             'date' => new \DateTimeImmutable(),
             'due_date' => new \DateTimeImmutable('+30 days'),
             'company_id' => $company->id,
+            'billed_company_id' => $billedCompany->id,
             'status' => StatusEnum::DRAFT,
             'created_at' => now(),
             'updated_at' => now(),
@@ -111,18 +103,8 @@ class EloquentInvoiceRepositoryTest extends TestCase
 
     private function createMockInvoice(): Invoice
     {
-        $faker = Factory::create();
-        $company = EloquentCompany::create([
-            'id' => Uuid::uuid4()->toString(),
-            'name' => $faker->company(),
-            'street' => $faker->streetAddress(),
-            'city' => $faker->city(),
-            'zip' => $faker->postcode(),
-            'phone' => $faker->phoneNumber(),
-            'email' => $faker->safeEmail(),
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
+        $company = $this->createMockEloquentCompany();
+        $billedCompany = $this->createMockEloquentCompany();
 
         return new Invoice(
             Uuid::uuid4(),
@@ -138,8 +120,33 @@ class EloquentInvoiceRepositoryTest extends TestCase
                 $company->phone,
                 $company->email
             ),
+            new Company(
+                Uuid::fromString($billedCompany->id),
+                $billedCompany->name,
+                $billedCompany->street,
+                $billedCompany->city,
+                $billedCompany->zip,
+                $billedCompany->phone,
+                $billedCompany->email
+            ),
             [],
             StatusEnum::DRAFT
         );
+    }
+
+    private function createMockEloquentCompany(): EloquentCompany
+    {
+        $faker = Factory::create();
+        return EloquentCompany::create([
+            'id' => Uuid::uuid4()->toString(),
+            'name' => $faker->company(),
+            'street' => $faker->streetAddress(),
+            'city' => $faker->city(),
+            'zip' => $faker->postcode(),
+            'phone' => $faker->phoneNumber(),
+            'email' => $faker->safeEmail(),
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
     }
 }

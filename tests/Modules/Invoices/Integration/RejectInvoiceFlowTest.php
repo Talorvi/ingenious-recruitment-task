@@ -16,10 +16,12 @@ class RejectInvoiceFlowTest extends TestCase
     public function test_can_approve_invoice_successfully()
     {
         $company = $this->createCompany();
+        $billedCompany = $this->createBilledCompany();
 
         $invoice = $this->createInvoice([
             'status' => StatusEnum::DRAFT->value,
             'company_id' => $company->id,
+            'billed_company_id' => $billedCompany->id
         ]);
 
         $response = $this->postJson("/api/invoices/{$invoice->id}/reject");
@@ -36,10 +38,12 @@ class RejectInvoiceFlowTest extends TestCase
     public function test_cannot_approve_non_draft_invoice()
     {
         $company = $this->createCompany();
+        $billedCompany = $this->createBilledCompany();
 
         $invoice = $this->createInvoice([
             'status' => StatusEnum::REJECTED->value,
             'company_id' => $company->id,
+            'billed_company_id' => $billedCompany->id
         ]);
 
         $response = $this->postJson("/api/invoices/{$invoice->id}/reject");
@@ -69,6 +73,22 @@ class RejectInvoiceFlowTest extends TestCase
         return $company;
     }
 
+    private function createBilledCompany(): EloquentCompany
+    {
+        $company = new EloquentCompany([
+            'id' => Uuid::uuid4()->toString(),
+            'name' => 'Billed Company',
+            'street' => '456 Billed St',
+            'city' => 'Billing City',
+            'zip' => '67890',
+            'phone' => '555-5678',
+            'email' => 'billing@example.com'
+        ]);
+        $company->save();
+
+        return $company;
+    }
+
     private function createInvoice(array $attributes = []): EloquentInvoice
     {
         $invoice = new EloquentInvoice(array_merge([
@@ -78,6 +98,7 @@ class RejectInvoiceFlowTest extends TestCase
             'due_date' => now()->addDays(30),
             'status' => StatusEnum::DRAFT->value,
             'company_id' => null,
+            'billed_company_id' => null,
         ], $attributes));
         $invoice->save();
 
